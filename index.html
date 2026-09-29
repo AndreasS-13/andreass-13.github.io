@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de [Seu Nome] - QA Tester Júnior. Garantindo qualidade com código limpo e testes afiados.">
+    <title>[Seu Nome] 🐛 QA Tester</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           VARIÁVEIS - TEMA CLARO & DESPOJADO
+           ========================================================================== */
+        :root {
+            --bg-color: #f8fafc;        /* Off-white limpo */
+            --card-bg: #ffffff;         /* Card branco */
+            --primary: #4f46e5;         /* Índigo vibrante */
+            --primary-hover: #4338ca;
+            --accent-green: #10b981;    /* Verde esmeralda */
+            --accent-sky: #0284c7;      /* Azul céu */
+            --accent-rose: #f43f5e;     /* Coral / Rose para bugs */
+            --text-main: #0f172a;       /* Escuro para leitura confortável */
+            --text-muted: #64748b;      /* Cinza médio */
+            --border: #e2e8f0;          /* Linhas sutis */
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ==========================================================================
+           RESET & BASE
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        .container {
+            width: 100%;
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ==========================================================================
+           NAVBAR FLUTUANTE (PILL BAR)
+           ========================================================================== */
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            padding: 10px 24px;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* ==========================================================================
+           HERO & BIO (BENTO GRID COMBINADO)
+           ========================================================================== */
+        .hero-bento {
+            margin-top: 120px;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 20px;
+        }
+
+        .bento-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .bento-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Card Principal Hero */
+        .hero-main {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .pill-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(79, 70, 229, 0.08);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            width: fit-content;
+            margin-bottom: 20px;
+        }
+
+        .hero-main h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .hero-main h1 span {
+            color: var(--primary);
+        }
+
+        .hero-main p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 28px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            background: #f1f5f9;
+            color: var(--text-main);
+        }
+
+        .btn-ghost:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+        }
+
+        /* Card Lateral Bio & Status */
+        .hero-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+        }
+
+        .bio-avatar {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 16px rgba(79, 70, 229, 0.25);
+        }
+
+        .hero-side h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .hero-side p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        .stat-item h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-item p {
+            font-size: 0.78rem;
+            margin-bottom: 0;
+            font-weight: 600;
+        }
+
+        /* ==========================================================================
+           SEÇÃO SKILLS & FERRRAMENTAS (AGORA NO TOPO)
+           ========================================================================== */
+        .section-margin {
+            margin-top: 40px;
+        }
+
+        .skills-bar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 0;
+            scrollbar-width: none; /* Firefox */
+        }
+        .skills-bar::-webkit-scrollbar { display: none; }
+
+        .skill-pill {
+            white-space: nowrap;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 9999px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .skill-pill i {
+            color: var(--primary);
+        }
+
+        /* ==========================================================================
+           SEÇÃO PROJETOS (LABORATÓRIO DE QA)
+           ========================================================================== */
+        .section-title-wrap {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title-wrap h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .section-title-wrap p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .filter-group {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 8px 18px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--text-main);
+            color: #fff;
+            border-color: var(--text-main);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .tag-category {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #f1f5f9;
+            color: var(--text-muted);
+        }
+
+        .bug-severity {
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .sev-high { color: var(--accent-rose); }
+        .sev-med { color: var(--primary); }
+        .sev-low { color: var(--accent-green); }
+
+        .project-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .project-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .project-footer-link {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hidden { display: none !important; }
+
+        /* ==========================================================================
+           SEÇÃO "POR QUE ME CONTRATAR?" (DIFERENCIAIS)
+           ========================================================================== */
+        .why-me-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .why-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+        }
+
+        .why-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+        }
+
+        .why-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .why-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           CONTATO DESPOJADO
+           ========================================================================== */
+        .contact-card {
+            background: linear-gradient(135deg, var(--primary) 0%, #312e81 100%);
+            color: #fff;
+            border-radius: var(--radius-lg);
+            padding: 48px 30px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-card h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            color: #c7d2fe;
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+
+        .social-pill-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn-light {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+
+        .social-btn-light:hover {
+            background: #ffffff;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           RESPONSIVIDADE
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .hero-bento {
+                grid-template-columns: 1fr;
+                margin-top: 100px;
+            }
+            .hero-main h1 { font-size: 1.9rem; }
+            .nav-links { display: none; } /* Em mobile simplificado */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR FLUTUANTE -->
+    <header>
+        <div class="navbar">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-bug-slash"></i> [DL]
+            </a>
+            <nav aria-label="Navegação">
+                <ul class="nav-links">
+                    <li><a href="#inicio" class="active">Início</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#diferenciais">Por que QA?</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- HERO & BIO (BENTO GRID COMBINADO) -->
+        <section id="inicio" class="hero-bento">
+            
+            <!-- Card Principal (Hero) -->
+            <div class="bento-card hero-main">
+                <div>
+                    <span class="pill-tag">
+                        <i class="fa-solid fa-circle" style="color: var(--accent-green); font-size: 0.6rem;"></i> 
+                        Disponível para Oportunidades
+                    </span>
+                    <h1>Caçando bugs antes que seu <span>usuário os encontre.</span></h1>
+                    <p>Olá! Sou <strong>[Seu Nome]</strong>, QA Tester Júnior. Transformo requisitos confusos em suítes de teste afiadas, prevenindo falhas em Web, Mobile e APIs.</p>
+                </div>
+                
+                <div class="cta-group">
+                    <a href="#projetos" class="btn btn-primary">
+                        Ver Projetos <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                    <a href="#contato" class="btn btn-ghost">
+                        Bater um papo <i class="fa-regular fa-comment"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card Lateral (Bio + Stats) -->
+            <div class="bento-card hero-side">
+                <div>
+                    <!-- Substitua as iniciais -->
+                    <div class="bio-avatar">DL</div>
+                    <h2>Olhar analítico, mente curiosa 🕵️‍♂️</h2>
+                    <p>Não entrego apenas 'passou/falhou'. Busco entender a causa raiz, ajudo o time de dev e garanto a melhor experiência do usuário.</p>
+                </div>
+
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <h3>100%</h3>
+                        <p>Foco na Qualidade</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Web/API</h3>
+                        <p>Cobertura Ágil</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- STACK DE TECNOLOGIAS (LOGO ABAIXO DO HERO) -->
+        <section class="section-margin">
+            <div class="skills-bar" aria-label="Tecnologias e Ferramentas">
+                <span class="skill-pill"><i class="fa-solid fa-code"></i> Cypress</span>
+                <span class="skill-pill"><i class="fa-solid fa-rocket"></i> Postman</span>
+                <span class="skill-pill"><i class="fa-solid fa-vial"></i> BDD / Gherkin</span>
+                <span class="skill-pill"><i class="fa-solid fa-robot"></i> Selenium</span>
+                <span class="skill-pill"><i class="fa-brands fa-jira"></i> Jira / Xray</span>
+                <span class="skill-pill"><i class="fa-brands fa-git-alt"></i> Git</span>
+                <span class="skill-pill"><i class="fa-solid fa-database"></i> SQL Básico</span>
+                <span class="skill-pill"><i class="fa-solid fa-clipboard-check"></i> Testes Manuais</span>
+            </div>
+        </section>
+
+        <!-- SEÇÃO PROJETOS -->
+        <section id="projetos" class="section-margin">
+            <div class="section-title-wrap">
+                <h2>Laboratório de Testes 🧪</h2>
+                <p>Casos práticos onde apliquei estratégias de validação e automação.</p>
+            </div>
+
+            <!-- Filtros -->
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="api">API</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="automacao">Automação</button>
+            </div>
+
+            <div class="projects-grid">
+                
+                <!-- Card 1 -->
+                <article class="project-card" data-category="web automacao">
+                    <div>
+                        <div class="project-top">
+                            <span class="tag-category">Web / Automação</span>
+                            <span class="bug-severity sev-high"><i class="fa-solid fa-circle"></i> Crítico</span>
+                        </div>
+                        <h3>E-Commerce Checkout E2E</h3>
+                        <p>Mapeamento de cenários críticos de compra, regras de frete e pagamentos automatizados via Cypress.</p>
+                    </div>
+                    <a href="#" class="project-footer-link">
+                        Ver detalhes do teste <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="project-card" data-category="api">
+                    <div>
+                        <div class="project-top">
+                            <span class="tag-category">API</span>
+                            <span class="bug-severity sev-med"><i class="fa-solid fa-circle"></i> Alto</span>
+                        </div>
+                        <h3>Validação de REST API</h3>
+                        <p>Suíte de testes automatizados no Postman para autenticação JWT, validação de JSON Schema e testes de carga.</p>
+                    </div>
+                    <a href="#" class="project-footer-link">
+                        Ver coleção Postman <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="project-card" data-category="mobile">
+                    <div>
+                        <div class="project-top">
+                            <span class="tag-category">Mobile</span>
+                            <span class="bug-severity sev-low"><i class="fa-solid fa-circle"></i> Normal</span>
+                        </div>
+                        <h3>App de Finanças Pessoais</h3>
+                        <p>Testes funcionais e exploratórios focados na usabilidade da tela de saldo e lançamento de despesas.</p>
+                    </div>
+                    <a href="#" class="project-footer-link">
+                        Ver relatório de bugs <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SEÇÃO "POR QUE QA?" (DIFERENCIAIS) -->
+        <section id="diferenciais" class="section-margin">
+            <div class="section-title-wrap">
+                <h2>Como eu agrego valor ao time? 🚀</h2>
+            </div>
+
+            <div class="why-me-grid">
+                <div class="why-card">
+                    <div class="why-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <h3>Prevenção > Correção</h3>
+                    <p>Encontro divergências na fase de levantamento de requisitos, economizando tempo e custo de desenvolvimento.</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon"><i class="fa-solid fa-comments"></i></div>
+                    <h3>Comunicação Clara</h3>
+                    <p>Reporto bugs com passos claros de reprodução, logs, prints e vídeos sem gerar atritos com o time de dev.</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon"><i class="fa-solid fa-user-check"></i></div>
+                    <h3>Foco na Experiência</h3>
+                    <p>Além do 'funciona ou não', avalio se a navegação é fluida e intuitiva para quem usa o sistema na vida real.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTATO -->
+        <section id="contato" class="section-margin">
+            <div class="contact-card">
+                <h2>Achou algum bug por aqui? 🐛</h2>
+                <p>Brincadeiras à parte, estou em busca de novos desafios em QA. Vamos conversar sobre como posso somar no seu time!</p>
+                
+                <div class="social-pill-group">
+                    <a href="https://linkedin.com/in/[SEU_LINKEDIN]" target="_blank" class="social-btn-light">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/[SEU_GITHUB]" target="_blank" class="social-btn-light">
+                        <i class="fa-brands fa-github"></i> GitHub
+                    </a>
+                    <a href="mailto:[SEU_EMAIL]@gmail.com" class="social-btn-light">
+                        <i class="fa-solid fa-envelope"></i> E-mail
+                    </a>
+                    <a href="https://wa.me/55[SEU_NUMERO]" target="_blank" class="social-btn-light">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 [Seu Nome] • Feito para o GitHub Pages</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT EMbutido (Filtro e Scroll Actives) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Filtro de Projetos
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.getAttribute('data-filter');
+
+                    projectCards.forEach(card => {
+                        const categories = card.getAttribute('data-category').split(' ');
+                        if (filter === 'all' || categories.includes(filter)) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // Ativa o link da Nav ao rolar a página
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(a => {
+                    a.classList.remove('active');
+                    if (a.getAttribute('href').includes(current)) {
+                        a.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
